@@ -44,8 +44,9 @@ ls -la "$CLONE_DIRECTORY"
 echo
 echo "##### Copying contents to git repo #####"
 mkdir -p "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
-# Replace the cp command with rsync to exclude .git:
-rsync -av --exclude='.git' "$SOURCE_FILES/" "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
+# Replace rsync command with cp and remove .git if present:
+cp -rv "$SOURCE_FILES/." "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY"
+rm -rf "$CLONE_DIRECTORY/$DESTINATION_DIRECTORY/.git"
 cd "$CLONE_DIRECTORY"
 
 echo
